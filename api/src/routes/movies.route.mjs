@@ -1,21 +1,33 @@
-import moviesController from '../controllers/movies.controller.mjs';
 import express from 'express';
+import { findAll, findById, getAges, transfer } from '../controllers/movies.controller.mjs';
 
 const router = express.Router();
 
 router.get(
     '',
-    async (req, res) => res.json(await moviesController.findAll(req.query))
+    async (req, res) => res.json(await findAll(req.query))
 );
 
 router.get(
     '/:movieId',
-    async (req, res) => res.json(await moviesController.findById(req.params.movieId))
+    async (req, res) => res.json(await findById(req.params.movieId))
 );
+
+router.patch(
+    '/:movieId/studio',
+    async (req, res) => {
+        try {
+            return res.json(await transfer(req.params.movieId, req.body));
+        } catch (e) {
+            return res.status(500).json({
+                message: e.message
+            });
+        }
+    });
 
 router.get(
     '/movies-ages',
-    async (req, res) => res.json(await moviesController.getAges())
+    async (req, res) => res.json(await getAges())
 );
 
 export const moviesRoute = router;
