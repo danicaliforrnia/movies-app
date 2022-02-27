@@ -25,4 +25,5 @@ Main.propTypes = {
         PropTypes.elementType
     ]).isRequired
 };
+
 export default Main;
