@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getMovies } from '../actions/movies.action';
+import { getMovie, getMovies } from '../actions/movies.action';
 
 const initialState = {
     loading: false,
-    movies: []
+    movies: [],
+    movie: null
 };
 
 export const moviesSlice = createSlice({
@@ -19,6 +20,16 @@ export const moviesSlice = createSlice({
             state.movies = payload;
         },
         [getMovies.rejected]: (state) => {
+            state.loading = false;
+        },
+        [getMovie.pending]: (state) => {
+            state.loading = true;
+        },
+        [getMovie.fulfilled]: (state, { payload }) => {
+            state.loading = false;
+            state.movie = payload;
+        },
+        [getMovie.rejected]: (state) => {
             state.loading = false;
         }
     }

@@ -5,7 +5,6 @@ export const getMovies = createAsyncThunk(
     'movies/getMovies',
     async ({ searchBy }, { rejectWithValue }) => {
         try {
-            console.log(searchBy);
             let url = '/movies';
 
             if (searchBy) {
@@ -14,6 +13,21 @@ export const getMovies = createAsyncThunk(
             const response = await http({
                 method: 'GET',
                 url
+            });
+            return await response.data;
+        } catch (err) {
+            return rejectWithValue(err);
+        }
+    }
+);
+
+export const getMovie = createAsyncThunk(
+    'movies/getMovie',
+    async ({ movieId }, { rejectWithValue }) => {
+        try {
+            const response = await http({
+                method: 'GET',
+                url: `/movies/${ movieId }`
             });
             return await response.data;
         } catch (err) {
