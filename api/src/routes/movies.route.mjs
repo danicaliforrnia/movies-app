@@ -9,6 +9,11 @@ router.get(
 );
 
 router.get(
+    '/:movieId',
+    async (req, res) => res.json(await moviesController.findById(req.params.movieId))
+);
+
+router.get(
     '/movies-ages',
     async (req, res) => res.json(await moviesController.getAges())
 );

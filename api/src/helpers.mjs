@@ -1,4 +1,4 @@
-import {GENRE_STRING} from '../constants/studio_constants.mjs'
+import { GENRE_STRING } from '../constants/studio_constants.mjs';
 
 
 export const getMovie = (movieId, studios) => {
@@ -38,9 +38,6 @@ export const movieConstructor = (movie, studio) => {
   //Add studioId from parent object
   Object.defineProperty(movie, 'studioId',
     Object.getOwnPropertyDescriptor(studio, 'id'));
-  //Remove non wanted properties
-  delete movie['price'];
-  delete movie['id'];
 
   return movie;
 }

@@ -11,6 +11,13 @@ const moviesController = {
         });
         return allMovies;
     },
+    findById: async (movieId) => {
+        return [
+            ...disney.movies,
+            ...warner.movies,
+            ...sony.movies
+        ].find(movie => movie.id === movieId);
+    },
     getAges: async () => movieAge
 };
 
