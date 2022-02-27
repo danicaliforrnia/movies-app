@@ -39,14 +39,14 @@ export const transfer = async (movieId, { studio: studioId }) => {
         throw new Error(`The studio is the current movie's studio`);
     }
 
-    if (currentStudio.money <= movie.price) {
-        throw new Error(`Insufficient balance to transfer the movie`);
-    }
-
     const newStudioIndex = studios.findIndex(studio => studio.id === studioId);
 
     if (newStudioIndex === -1) {
         throw new Error(`Studio not found`);
+    }
+
+    if (studios[newStudioIndex].money <= movie.price) {
+        throw new Error(`Insufficient balance to transfer the movie`);
     }
 
     currentStudio.movies.splice(currentStudio.movies.findIndex(movie => movie.id === movieId), 1);
