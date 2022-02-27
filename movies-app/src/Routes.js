@@ -17,7 +17,7 @@ const Routes = () => {
                         <NavMotion>
                             <BrowserRoutes>
                                 <Route path="/" element={ <Movies/> }/>
-                                <Route path="/transfers" element={ <Transfers/> }/>
+                                <Route path="/transfers/movies/:movieId" element={ <Transfers/> }/>
                             </BrowserRoutes>
                         </NavMotion>
                     </Layout>

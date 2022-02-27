@@ -4,11 +4,6 @@ const MENUS = [
         text: 'Movies',
         route: '/'
     },
-    {
-        id: 2,
-        text: 'Transfers',
-        route: '/transfers'
-    }
 ]
 
 export default MENUS;
