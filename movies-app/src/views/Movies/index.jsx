@@ -21,7 +21,8 @@ const Movies = () => {
             <Grid item xs={ 12 }>
                 <FilterBar search={ searchBy => dispatch(getMovies({ searchBy })) }/>
             </Grid>
-            <Grid item xs={ 12 } alignSelf={ loading ? 'center' : 'flex-start' }>
+            <Grid item xs={ 12 } alignSelf={ loading ? 'center' : 'flex-start' }
+                  sx={ { width: '100%' } }>
                 {
                     loading ? <CircularProgress size={ 128 } sx={ { marginTop: 2 } }/> : <MoviesList movies={ movies }
                                                                                                      studios={ studios }/>
