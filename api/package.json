@@ -4,16 +4,17 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --experimental-modules ./src/index.mjs"
+    "start": "nodemon --experimental-modules server.mjs"
   },
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
     "bunyan": "^1.8.12",
     "bunyan-format": "^0.2.1",
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "dotenv": "^16.0.0",
+    "express": "^4.17.1",
+    "query-string": "^7.1.1"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"
