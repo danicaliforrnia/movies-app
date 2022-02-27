@@ -9,10 +9,10 @@ const CustomSnackbar = ({ severity, open, message }) => {
 
     return (
         <Snackbar
-            sx={ {
-                position: 'absolute',
-                top: 0,
-                right: 4
+            sx={ { height: '100%' } }
+            anchorOrigin={ {
+                vertical: 'top',
+                horizontal: 'right'
             } }
             open={ openSnackbar } autoHideDuration={ 3000 } onClose={ () => setOpenSnackbar(false) }>
             <Alert severity={ severity } sx={ { width: '100%' } }>

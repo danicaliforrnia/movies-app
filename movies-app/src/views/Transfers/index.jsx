@@ -7,14 +7,31 @@ import { getStudios } from '../../redux/actions/studios.action';
 import CustomSnackbar from '../../components/Snackbar';
 import TransferHeader from './TransferHeader';
 import TransferForm from './TransferForm';
+import { resetTransfer } from '../../redux/reducers/movies.slice';
 
 const Transfers = () => {
     const params = useParams();
     const movieId = params?.movieId;
     const dispatch = useDispatch();
-    const [open, setOpen] = useState(false);
-    const { movie, loading, loadingTransfer, transferSuccess } = useSelector((state) => state.movies);
+    const [enableSnackbar, setEnableSnackbar] = useState(false);
+    const [snackbarState, setSnackbarState] = useState({
+        open: false,
+        severity: 'info',
+        message: ''
+    });
+    const {
+        movie,
+        loading,
+        loadingTransfer,
+        isTransferSuccess,
+        transferMessage
+    } = useSelector((state) => state.movies);
     const { studios } = useSelector((state) => state.studios);
+
+    useEffect(() => {
+        setEnableSnackbar(true);
+        return () => dispatch(resetTransfer());
+    }, []);
 
     useEffect(() => {
         if (movieId) {
@@ -29,8 +46,17 @@ const Transfers = () => {
     }, [studios]);
 
     useEffect(() => {
-        setOpen(transferSuccess);
-    }, [transferSuccess]);
+        setSnackbarState({
+            open: enableSnackbar,
+            severity: isTransferSuccess ? 'success' : 'error',
+            message: transferMessage
+        });
+
+        if (isTransferSuccess) {
+            dispatch(getMovie({ movieId }));
+            dispatch(getStudios());
+        }
+    }, [isTransferSuccess, loadingTransfer]);
 
     if (loading) {
         return <CircularProgress size={ 128 } sx={ { marginTop: 2 } }/>;
@@ -43,9 +69,9 @@ const Transfers = () => {
                 <TransferForm loadingTransfer={ loadingTransfer }
                               onTransfer={ studio => dispatch(transferMovie({ movieId, studio })) }/>
             </Grid>
-            <CustomSnackbar open={ open }
-                            severity="success"
-                            message="Transfer done successfully"
+            <CustomSnackbar open={ snackbarState.open }
+                            severity={ snackbarState.severity }
+                            message={ snackbarState.message }
             />
         </>
     );

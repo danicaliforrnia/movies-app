@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import React, { useState } from 'react';
 import { Button, CircularProgress, FormControl, Grid, InputLabel, MenuItem, Select } from '@mui/material';
+import { nFormatter } from '../../utils/n-formatter';
 
 const TransferForm = ({ onTransfer, loadingTransfer }) => {
     const [studio, setStudio] = useState();
@@ -18,7 +19,8 @@ const TransferForm = ({ onTransfer, loadingTransfer }) => {
                         label="Studios"
                         onChange={ e => setStudio(e.target.value) }>
                         { studios.map(studio => (
-                            <MenuItem key={ studio.id } value={ studio.id }>{ studio.name }</MenuItem>
+                            <MenuItem key={ studio.id }
+                                      value={ studio.id }>{ studio.name } - { nFormatter(studio.money) }$</MenuItem>
                         )) }
                     </Select>
                 </FormControl>
@@ -27,7 +29,7 @@ const TransferForm = ({ onTransfer, loadingTransfer }) => {
                 <Grid item>
                     <Button variant="text" color="primary">
                         <Link to={ '/' } style={ { textDecoration: 'none' } }>
-                            Cancel
+                            Go Back
                         </Link>
                     </Button>
                 </Grid>
