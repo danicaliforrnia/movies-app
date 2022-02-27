@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --experimental-modules server.mjs"
+    "start": "nodemon --experimental-modules server.mjs | bunyan"
   },
   "license": "ISC",
   "dependencies": {
@@ -14,7 +14,8 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.1",
-    "query-string": "^7.1.1"
+    "query-string": "^7.1.1",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"
