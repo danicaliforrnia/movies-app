@@ -9,7 +9,6 @@ const CustomSnackbar = ({ severity, open, message }) => {
 
     return (
         <Snackbar
-            sx={ { height: '100%' } }
             anchorOrigin={ {
                 vertical: 'top',
                 horizontal: 'right'

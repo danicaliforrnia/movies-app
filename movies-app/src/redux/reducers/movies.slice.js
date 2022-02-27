@@ -4,7 +4,8 @@ import { getMovie, getMovies, transferMovie } from '../actions/movies.action';
 const initialState = {
     loading: false,
     loadingTransfer: false,
-    transferSuccess: false,
+    isTransferSuccess: undefined,
+    transferMessage: '',
     movies: [],
     movie: null
 };
@@ -12,7 +13,12 @@ const initialState = {
 export const moviesSlice = createSlice({
     name: 'movies',
     initialState,
-    reducers: {},
+    reducers: {
+        resetTransfer(state) {
+            state.isTransferSuccess = false;
+            state.loadingTransfer = false;
+        }
+    },
     extraReducers: {
         [getMovies.pending]: (state) => {
             state.loading = true;
@@ -36,19 +42,21 @@ export const moviesSlice = createSlice({
         },
         [transferMovie.pending]: (state) => {
             state.loadingTransfer = true;
-            state.transferSuccess = false;
+            state.isTransferSuccess = false;
+            state.transferMessage = '';
         },
-        [transferMovie.fulfilled]: (state, { payload }) => {
+        [transferMovie.fulfilled]: (state) => {
             state.loadingTransfer = false;
-            state.transferSuccess = true;
-            state.movie = payload;
+            state.isTransferSuccess = true;
+            state.transferMessage = 'Movie transferred successfully';
         },
-        [transferMovie.rejected]: (state) => {
+        [transferMovie.rejected]: (state, { payload }) => {
             state.loadingTransfer = false;
-            state.transferSuccess = false;
+            state.isTransferSuccess = false;
+            state.transferMessage = payload;
         }
     }
 });
 
-export const { reducers } = moviesSlice.actions;
+export const { resetTransfer } = moviesSlice.actions;
 export default moviesSlice.reducer;

@@ -38,18 +38,18 @@ export const getMovie = createAsyncThunk(
 
 export const transferMovie = createAsyncThunk(
     'movies/transferMovie',
-    async ({ movieId, studioId }, { rejectWithValue }) => {
+    async ({ movieId, studio }, { rejectWithValue }) => {
         try {
             const response = await http({
                 method: 'PATCH',
                 url: `/movies/${ movieId }/studio`,
                 data: {
-                    studio: studioId
+                    studio
                 }
             });
             return await response.data;
         } catch (err) {
-            return rejectWithValue(err);
+            return rejectWithValue(err?.response?.data?.message || 'Something bad happened, try again');
         }
     }
 );
