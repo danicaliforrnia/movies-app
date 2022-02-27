@@ -1,5 +1,5 @@
 import { movieConstructor } from '../helpers.mjs';
-import { disney, sony, warner } from '../../constants/studio_constants.mjs';
+import { disney, movieAge, sony, warner } from '../../constants/studio_constants.mjs';
 
 const moviesController = {
     findAll: async (queryParams) => {
@@ -10,7 +10,8 @@ const moviesController = {
             });
         });
         return allMovies;
-    }
+    },
+    getAges: async () => movieAge
 };
 
 export default moviesController;

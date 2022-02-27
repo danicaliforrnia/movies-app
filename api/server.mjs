@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import { config } from 'dotenv';
 import { moviesRoute } from './src/routes/movies.route.mjs';
+import { studiosRoute } from './src/routes/studios.route.mjs';
 
 config();
 
@@ -15,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(`${ process.env.BASE_URL }/movies`, moviesRoute);
-
+app.use(`${ process.env.BASE_URL }/studios`, studiosRoute);
 app.get('/api/v2/health', (req, res) => res.json({ status: 'UP' }));
 
 app.listen(port, () => console.log(`listening on ${ port }`));
