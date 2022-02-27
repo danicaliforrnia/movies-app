@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getMovie, getMovies } from '../actions/movies.action';
+import { getMovie, getMovies, transferMovie } from '../actions/movies.action';
 
 const initialState = {
     loading: false,
+    loadingTransfer: false,
+    transferSuccess: false,
     movies: [],
     movie: null
 };
@@ -31,6 +33,19 @@ export const moviesSlice = createSlice({
         },
         [getMovie.rejected]: (state) => {
             state.loading = false;
+        },
+        [transferMovie.pending]: (state) => {
+            state.loadingTransfer = true;
+            state.transferSuccess = false;
+        },
+        [transferMovie.fulfilled]: (state, { payload }) => {
+            state.loadingTransfer = false;
+            state.transferSuccess = true;
+            state.movie = payload;
+        },
+        [transferMovie.rejected]: (state) => {
+            state.loadingTransfer = false;
+            state.transferSuccess = false;
         }
     }
 });

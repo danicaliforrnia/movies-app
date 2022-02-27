@@ -35,3 +35,21 @@ export const getMovie = createAsyncThunk(
         }
     }
 );
+
+export const transferMovie = createAsyncThunk(
+    'movies/transferMovie',
+    async ({ movieId, studioId }, { rejectWithValue }) => {
+        try {
+            const response = await http({
+                method: 'PATCH',
+                url: `/movies/${ movieId }/studio`,
+                data: {
+                    studio: studioId
+                }
+            });
+            return await response.data;
+        } catch (err) {
+            return rejectWithValue(err);
+        }
+    }
+);
