@@ -17,6 +17,7 @@ router.patch(
     '/:movieId/studio',
     async (req, res) => {
         try {
+            req.log.info(`Transferring movie ${ req.params.movieId } to ${ req.body.studio }`);
             return res.json(await transfer(req.params.movieId, req.body));
         } catch (e) {
             return res.status(500).json({
