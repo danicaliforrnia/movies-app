@@ -1,11 +1,9 @@
-import { TextField } from '@mui/material';
+import { debounce, TextField } from '@mui/material';
 
 const FilterBar = ({ search }) => {
 
     // TODO: debounce to avoid many consecutive request
-    const onSearch = value => {
-        search(value);
-    };
+    const onSearch = debounce(value => search(value), 300);
 
     return (
         <TextField label="Filter by genre, price or title" variant="standard"

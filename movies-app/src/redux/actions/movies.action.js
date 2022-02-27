@@ -3,11 +3,17 @@ import http from '../../utils/axios';
 
 export const getMovies = createAsyncThunk(
     'movies/getMovies',
-    async (params, { rejectWithValue }) => {
+    async ({ searchBy }, { rejectWithValue }) => {
         try {
+            console.log(searchBy);
+            let url = '/movies';
+
+            if (searchBy) {
+                url = `${ url }?searchBy=${ searchBy }`;
+            }
             const response = await http({
                 method: 'GET',
-                url: '/movies'
+                url
             });
             return await response.data;
         } catch (err) {
