@@ -34,7 +34,8 @@ const MovieCard = ({ movie, studios, imgHeight, children }) => {
 };
 
 MovieCard.defaultProps = {
-    imgHeight: '250'
+    imgHeight: '250',
+    children: null
 };
 
 MovieCard.propTypes = {
@@ -46,7 +47,7 @@ MovieCard.propTypes = {
         PropTypes.node,
         PropTypes.func,
         PropTypes.elementType
-    ]).isRequired
+    ])
 };
 
 export default MovieCard;
