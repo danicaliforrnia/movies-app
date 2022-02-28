@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import React, { useState } from 'react';
-import { Button, CircularProgress, FormControl, Grid, InputLabel, MenuItem, Select } from '@mui/material';
+import { Button, CircularProgress, FormControl, Grid, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 import { nFormatter } from '../../utils/n-formatter';
 
 const TransferForm = ({ onTransfer, loadingTransfer }) => {
@@ -9,14 +9,18 @@ const TransferForm = ({ onTransfer, loadingTransfer }) => {
     const { studios } = useSelector((state) => state.studios);
 
     return (
-        <>
-            <Grid item xs={ 12 } sm={ 4 } md={ 3 }>
+        <Grid container spacing={ 2 } direction="column">
+            <Grid item>
+                <Typography variant="h6">
+                    Transfer movie:
+                </Typography>
+            </Grid>
+            <Grid item>
                 <FormControl fullWidth>
                     <InputLabel id="studios-select-label">Studios</InputLabel>
                     <Select
                         labelId="studios-select-label"
                         id="studios-select"
-                        label="Studios"
                         onChange={ e => setStudio(e.target.value) }>
                         { studios.map(studio => (
                             <MenuItem key={ studio.id }
@@ -43,7 +47,7 @@ const TransferForm = ({ onTransfer, loadingTransfer }) => {
                     </Button>
                 </Grid>
             </Grid>
-        </>
+        </Grid>
     );
 };
 

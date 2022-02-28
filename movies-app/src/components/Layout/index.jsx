@@ -25,4 +25,5 @@ Layout.propTypes = {
         PropTypes.elementType
     ]).isRequired
 };
+
 export default Layout;

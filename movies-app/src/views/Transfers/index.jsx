@@ -4,10 +4,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { getMovie, transferMovie } from '../../redux/actions/movies.action';
 import { CircularProgress, Grid } from '@mui/material';
 import { getStudios } from '../../redux/actions/studios.action';
-import TransferHeader from './TransferHeader';
 import TransferForm from './TransferForm';
 import { resetTransfer } from '../../redux/reducers/movies.slice';
 import UiContext from '../../context/UiContenxt';
+import MovieCard from '../../components/MovieCard';
 
 const Transfers = () => {
     const params = useParams();
@@ -62,10 +62,16 @@ const Transfers = () => {
 
     return (
         <>
-            <Grid container spacing={ 4 }>
-                <TransferHeader movie={ movie }/>
-                <TransferForm loadingTransfer={ loadingTransfer }
-                              onTransfer={ studio => dispatch(transferMovie({ movieId, studio })) }/>
+            <Grid container
+                  direction="row"
+                  justifyContent="center">
+                <Grid item xs={ 12 } md={ 6 } sx={ { padding: 2 } }>
+                    { movie && <MovieCard movie={ movie } studios={ studios } imgHeight={ 'auto' }/> }
+                </Grid>
+                <Grid item xs={ 12 } md={ 6 }>
+                    <TransferForm loadingTransfer={ loadingTransfer }
+                                  onTransfer={ studio => dispatch(transferMovie({ movieId, studio })) }/>
+                </Grid>
             </Grid>
         </>
     );
