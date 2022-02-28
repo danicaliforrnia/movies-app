@@ -1,7 +1,6 @@
 module.exports = {
 	clearMocks: true,
-	collectCoverage: true,
-	coverageDirectory: 'coverage',
+	collectCoverage: false,
 	moduleFileExtensions: ['js', 'jsx', 'mjs'],
 	testEnvironment: 'jest-environment-node',
 	testPathIgnorePatterns: ['/node_modules/'],
