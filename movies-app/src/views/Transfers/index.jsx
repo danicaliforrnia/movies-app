@@ -49,11 +49,6 @@ const Transfers = () => {
                 snackbarMessage: transferMessage
             });
         }
-
-        if (isTransferSuccess) {
-            dispatch(getMovie({ movieId }));
-            dispatch(getStudios());
-        }
     }, [isTransferSuccess, loadingTransfer]);
 
     if (loading) {

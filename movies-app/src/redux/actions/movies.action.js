@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import http from '../../utils/axios';
+import { getStudios } from './studios.action';
 
 export const getMovies = createAsyncThunk(
     'movies/getMovies',
@@ -38,7 +39,7 @@ export const getMovie = createAsyncThunk(
 
 export const transferMovie = createAsyncThunk(
     'movies/transferMovie',
-    async ({ movieId, studio }, { rejectWithValue }) => {
+    async ({ movieId, studio }, { dispatch, rejectWithValue }) => {
         try {
             const response = await http({
                 method: 'PATCH',
@@ -47,6 +48,10 @@ export const transferMovie = createAsyncThunk(
                     studio
                 }
             });
+
+            dispatch(getMovie({ movieId }));
+            dispatch(getStudios());
+
             return await response.data;
         } catch (err) {
             return rejectWithValue(err?.response?.data?.message || 'Something bad happened, try again');
