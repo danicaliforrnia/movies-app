@@ -2,7 +2,7 @@ module.exports = {
     clearMocks: true,
     collectCoverage: false,
     moduleFileExtensions: ['js', 'jsx', 'mjs'],
-    setupFilesAfterEnv: ['<rootDir>/src/setup-tests.js'],
+    setupFilesAfterEnv: ['<rootDir>/src/setupTests.js'],
     transform: {
         '^.+\\.jsx?$': 'babel-jest',
         '^.+\\.mjs$': 'babel-jest'
