@@ -42,7 +42,7 @@ export const transferMovie = createAsyncThunk(
     async ({ movieId, studio }, { dispatch, rejectWithValue }) => {
         try {
             const response = await http({
-                method: 'PATCH',
+                method: 'POST',
                 url: `/movies/${ movieId }/studio`,
                 data: {
                     studio
