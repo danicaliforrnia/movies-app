@@ -1,6 +1,6 @@
 import { movieConstructor } from '../helpers.mjs';
-import { disney, GENRE_STRING, movieAge, sony, warner } from '../../constants/studio_constants.mjs';
-import { studios } from '../../server.mjs';
+import { disney, GENRE_STRING, sony, warner } from '../../constants/studio_constants.mjs';
+import { studios } from '../server.mjs';
 
 export const findAll = async (queryParams) => {
     let allMovies = [];
@@ -24,11 +24,17 @@ export const findAll = async (queryParams) => {
 };
 
 export const findById = async (movieId) => {
-    return [
+    const movie = [
         ...disney.movies,
         ...warner.movies,
         ...sony.movies
     ].find(movie => movie.id === movieId);
+
+    if (!movie) {
+        throw new Error(`Movie not found`);
+    }
+
+    return movie;
 };
 
 export const transfer = async (movieId, { studio: studioId }) => {
@@ -58,5 +64,3 @@ export const transfer = async (movieId, { studio: studioId }) => {
 
     return movieConstructor(movie, studios[newStudioIndex]);
 };
-
-export const getAges = async () => movieAge;

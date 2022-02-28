@@ -1,9 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import { config } from 'dotenv';
-import { moviesRoute } from './src/routes/movies.route.mjs';
-import { studiosRoute } from './src/routes/studios.route.mjs';
-import { disney, sony, warner } from './constants/studio_constants.mjs';
+import { moviesRoute } from './routes/movies.route.mjs';
+import { studiosRoute } from './routes/studios.route.mjs';
+import { disney, sony, warner } from '../constants/studio_constants.mjs';
 import { v4 } from 'uuid';
 import pkg from 'bunyan';
 

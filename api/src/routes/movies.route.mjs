@@ -1,5 +1,5 @@
 import express from 'express';
-import { findAll, findById, getAges, transfer } from '../controllers/movies.controller.mjs';
+import { findAll, findById, transfer } from '../controllers/movies.controller.mjs';
 
 const router = express.Router();
 
@@ -10,10 +10,18 @@ router.get(
 
 router.get(
     '/:movieId',
-    async (req, res) => res.json(await findById(req.params.movieId))
+    async (req, res) => {
+        try {
+            return res.json(await findById(req.params.movieId));
+        } catch (e) {
+            return res.status(404).json({
+                message: e.message
+            });
+        }
+    }
 );
 
-router.patch(
+router.post(
     '/:movieId/studio',
     async (req, res) => {
         try {
@@ -25,10 +33,5 @@ router.patch(
             });
         }
     });
-
-router.get(
-    '/movies-ages',
-    async (req, res) => res.json(await getAges())
-);
 
 export const moviesRoute = router;

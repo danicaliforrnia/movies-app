@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --experimental-modules server.mjs | bunyan"
+    "test": "jest",
+    "start": "nodemon --experimental-modules src/server.mjs | bunyan"
   },
   "license": "ISC",
   "dependencies": {
@@ -18,6 +18,12 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "nodemon": "^1.19.1"
+    "@babel/core": "^7.17.5",
+    "@babel/node": "^7.16.8",
+    "@babel/preset-env": "^7.16.11",
+    "babel-jest": "^27.5.1",
+    "jest": "^27.5.1",
+    "nodemon": "^1.19.1",
+    "supertest": "^6.2.2"
   }
 }
