@@ -3,7 +3,7 @@ import { disney, GENRE_STRING, sony, warner } from '../../constants/studio_const
 import { studios } from '../server.mjs';
 
 export const findAll = async (queryParams) => {
-    let allMovies = [];
+    let movies = [];
     if (queryParams.searchBy) {
         studios.forEach(singleStudio =>
             singleStudio.movies
@@ -13,14 +13,14 @@ export const findAll = async (queryParams) => {
                     || GENRE_STRING[movie.genre].toLowerCase().includes(queryParams.searchBy.toLowerCase())
                     || movie.price === +queryParams.searchBy
                 )
-                .forEach(movie => allMovies.push(movie))
+                .forEach(movie => movies.push(movie))
         );
     } else {
         studios.forEach(singleStudio =>
-            singleStudio.movies.map(movie => movieConstructor(movie, singleStudio)).forEach(movie => allMovies.push(movie))
+            singleStudio.movies.map(movie => movieConstructor(movie, singleStudio)).forEach(movie => movies.push(movie))
         );
     }
-    return allMovies;
+    return movies;
 };
 
 export const findById = async (movieId) => {
