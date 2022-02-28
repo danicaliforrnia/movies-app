@@ -1,8 +1,6 @@
 import { debounce, TextField } from '@mui/material';
 
 const FilterBar = ({ search }) => {
-
-    // TODO: debounce to avoid many consecutive request
     const onSearch = debounce(value => search(value), 300);
 
     return (
