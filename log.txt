@@ -1,0 +1,23 @@
+Solved:
+
+- missing gitignore added.
+- jest setup for testing in api and movies-app projects.
+- env file with envs created in both projects.
+- index.html was located in the public folder.
+- api port changed to 8080 (this fixed broken images).
+- Redux store configured.
+- Route.js file added with lazy components.
+- API request goes through redux thunk.
+- Context is used for UI state such as snackbar properties.
+- routes and controllers created to handle requests to the API.
+- Buyan logger configured.
+- unit tests and e2e test added to the api project.
+- A unit test was created for MovieCard component as an example.
+- Axios configured with a base URL.
+- transfer endpoint created.
+- TO DO completed.
+
+Missing:
+- Mock data and mock responses for testing.
+- Unit tests for all movies-app components.
+-

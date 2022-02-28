@@ -12,7 +12,7 @@ const { createLogger, stdSerializers } = pkg;
 config();
 
 const log = createLogger({
-    name: 'my-app',
+    name: 'movies-api',
     serializers: stdSerializers
 });
 
